@@ -63,6 +63,6 @@ model.fit(x_train, class_train, batch_size=128, epochs=100, validation_data=[x_t
 #----------------------------------------------------------------#
 # Salvando classificador e pesos dos neurônios
 model_json = model.to_json()
-with open("model_cifar-10.json", "w") as json_file:
+with open("data/model_cifar-10.json", "w") as json_file:
     json_file.write(model_json)
-model.save_weights("model_cifar-10.h5")
+model.save_weights("data/model_cifar-10.h5")

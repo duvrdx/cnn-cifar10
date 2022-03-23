@@ -3,27 +3,33 @@ import numpy as np
 import imageio
 import cv2
 
-# Carregando o classificador
+# Converte a imagem para um formato em que o classificador entenda
+def convert_img(img):
+    img = imageio.imread('1.png').astype('float32')
+    img = np.asarray([img])
+    img /= 255
+
+    return img
+
+# Carrega o modelo de rede neural
 def load_model():
-    a = open('model_cifar-10.json', 'r')
+    a = open('data/model_cifar-10.json', 'r')
     model_structure = a.read()
     a.close()
     model = model_from_json(model_structure)
-    model.load_weights("model_cifar-10.h5")
+    model.load_weights("data/model_cifar-10.h5")
 
     return model
 
-def classify(img_path, model):
-    img = imageio.imread(img_path)
-    predict = model(img)
+# Detecta qual é a classe da predição pra uma forma categorica
+def wich_class(array):
+    pattern = ['airplane','automobile','bird','cat','deer','dog','frog','horse','ship','truck']
+    for pos, item in enumerate(array>0.5):
+        if item:
+            return pattern[pos]
+            
+# Classifica uma imagem utilizando a rede neural
+def classify(img, model):
+    predict = model.predict(img)
 
     return img, predict
-
-
-model = load_model()
-
-img = imageio.imread('1.png').astype('float32')
-img = np.asarray([img])
-img /= 255
-predict = model.predict(img)
-print(predict > 0.5)

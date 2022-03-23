@@ -72,14 +72,11 @@ base_treinamento = gerador_treinamento.flow(x_train, class_train, batch_size=128
 base_teste = gerador_teste.flow(x_test, class_test, batch_size=128)
 
 gerador_treinamento.fit(x_train)
-model.fit_generator(base_treinamento, epochs=50, validation_data=base_teste, validation_steps=10000/128)
+model.fit_generator(base_treinamento, epochs=100, validation_data=base_teste)
 
 
 
 # Salvando classificador e pesos dos neurônios
-with open("data/model_cifar10_summary.txt", "w") as summary:
-    summary.write(model.summary())
-
 model_json = model.to_json()
 with open("data/model_cifar-10.json", "w") as json_file:
     json_file.write(model_json)

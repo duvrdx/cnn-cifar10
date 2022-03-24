@@ -6,6 +6,8 @@ from keras.preprocessing.image import ImageDataGenerator
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Activation, Flatten
 from keras.layers import Conv2D, MaxPooling2D, BatchNormalization
+import pickle
+import os
 
 
 
@@ -72,12 +74,17 @@ base_treinamento = gerador_treinamento.flow(x_train, class_train, batch_size=128
 base_teste = gerador_teste.flow(x_test, class_test, batch_size=128)
 
 gerador_treinamento.fit(x_train)
-model.fit_generator(base_treinamento, epochs=100, validation_data=base_teste)
+history = model.fit_generator(base_treinamento, epochs=3, validation_data=base_teste, validation_steps=10000/128)
 
 
 
 # Salvando classificador e pesos dos neurônios
 model_json = model.to_json()
-with open("data/model_cifar-10.json", "w") as json_file:
+with open("data/model_cifar-11.json", "w") as json_file:
     json_file.write(model_json)
-model.save_weights("data/model_cifar-10.h5")
+model.save_weights("data/model_cifar-11.h5")
+
+history = model.history
+
+with open("history", 'wb') as file:
+    pickle.dump(history, file)

@@ -17,6 +17,8 @@ with open('statistics/history', 'rb') as file:
 
 # Imprimindo e salvando histórico
 stats.plotmodelhistory(history)
+print(f'Accuracy: {history.history["val_accuracy"][-1]}')
+print(f'Loss: {history.history["val_loss"][-1]}')
 
 # Imprimindo heatmap
 pred = model.predict(x_test)
@@ -36,7 +38,7 @@ thresh = cm.max() / 2,
 
 fig, ax = plt.subplots(figsize = (12, 12))
 im, cbar = stats.heatmap(cm, labels, labels, ax = ax,
-                    cmap = plt.cm.Blues, cbarlabel = 'count of predictions')
+cmap = plt.cm.Blues, cbarlabel = 'count of predictions')
 
 texts = stats.annotate_heatmap(im, data = cm, threshold = thresh)
 

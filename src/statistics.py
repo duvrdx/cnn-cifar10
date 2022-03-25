@@ -45,7 +45,7 @@ def plotmodelhistory(history):
     ax[1].set_xlabel('Epoch')
     ax[1].legend(['train', 'validate'], loc = 'upper left')
     plt.show()
-    fig.savefig('statistics/history.png', dpi=300)
+    fig.savefig('statistics/history.png', dpi=72)
 
 def heatmap(data, row_labels, col_labels, ax = None, cbar_kw = {}, cbarlabel = '', **kwargs):
     

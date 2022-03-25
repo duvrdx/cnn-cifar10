@@ -74,7 +74,7 @@ base_treinamento = gerador_treinamento.flow(x_train, class_train, batch_size=128
 base_teste = gerador_teste.flow(x_test, class_test, batch_size=128)
 
 gerador_treinamento.fit(x_train)
-history = model.fit_generator(base_treinamento, epochs=3, validation_data=base_teste, validation_steps=10000/128)
+history = model.fit_generator(base_treinamento, epochs=50, validation_data=base_teste, validation_steps=10000/128)
 
 
 
@@ -86,5 +86,5 @@ model.save_weights("data/model_cifar-11.h5")
 
 history = model.history
 
-with open("history", 'wb') as file:
+with open("statistics/history", 'wb') as file:
     pickle.dump(history, file)

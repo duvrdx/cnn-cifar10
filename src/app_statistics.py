@@ -12,7 +12,7 @@ x_train, x_test, class_train, class_test = stats.load_cifar()
 model = cifar.load_model('data/model_cifar-10.json','data/model_cifar-10.h5')
 
 # Carregando histórico da rede neural
-with open('src/history', 'rb') as file:
+with open('statistics/history', 'rb') as file:
     history = pickle.load(file)
 
 # Imprimindo e salvando histórico
@@ -42,4 +42,4 @@ texts = stats.annotate_heatmap(im, data = cm, threshold = thresh)
 
 fig.tight_layout()
 plt.show()
-fig.savefig('statistics/heatmap.png', dpi=300)
+fig.savefig('statistics/heatmap.png', dpi=72)

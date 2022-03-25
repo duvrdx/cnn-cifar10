@@ -29,7 +29,7 @@ Para isso, foi utilizado um *dataset* bem conhecido, que é o [Cifar-10](https:/
 - [Gráficos](statistics)
 ### Problemas
 - Valor de perda alta
-    > Uma possível solução possa ser aumentar o número de camadas ocultas, e aumentar o número de épocas. *(Os testes foram realizados com duas camadas ocultas, e 50 épocas, mais informações em [model_cifar10_summary](data/model_cifar10_summary.txt)).*
+    > Um grande valor de perda, indica que nossa rede neural possui *Overfiting*, que é quando a nossa rede se 'acostuma' com os dados utilizados no treinamento. Uma possível solução possa ser aumentar o número de camadas ocultas, e aumentar o número de épocas. *(Os testes foram realizados com duas camadas ocultas, e 50 épocas, mais informações em [model_cifar10_summary](data/model_cifar10_summary.txt)).*
 
 - Erro na predição de gatos e cachorros
     > Observando a [matriz de confusão](statistics/heatmap.png), conseguimos perceber que há um grande volume de erro entre a predição de gatos e cachorros. A possível solução seria a mesma que a para abaixar o valor de perda. Outra forma seria aumentando o número de dados utilizando o *ImageGenerator* da própria biblioteca.
